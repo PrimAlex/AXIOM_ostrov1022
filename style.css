@@ -140,6 +140,7 @@ input {
   font-size: 16px;
   vertical-align: bottom;
   width: 100%;
+  margin: auto;
 }
 input:focus {
   outline: none;
@@ -218,4 +219,22 @@ div.popup_inner {
   background: white;
   border: 1px solid #ccc;
   padding: 10px;
+}
+
+.copyright{margin-right: 100px; color: white; text-align: right;}
+.socialnetwork{margin-left: 100px;}
+.row .table{display: none;}
+
+.table p{
+  border-bottom: rgba(77, 125, 157, 0.2) solid 1px;
+  margin-top: 20px;
+}
+
+
+/* NOTE: MEDIA */
+
+@media screen (min-width: 1200px){
+  body{
+    background: #000;
+  }
 }

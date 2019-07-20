@@ -32,7 +32,7 @@
     <div id="wrapper">
       <div class="content color-black">
         <div class="row" style="position:relative;">
-          <div class="col-sm-6">
+          <!--<div class="col-sm-6">-->
             <span><input type="text" name="kod" id="task_id" placeholder="Введите код запроса..."></span>
             <!--<div class="select">
                 <select>
@@ -40,7 +40,7 @@
                     <option value="fire">Пожар</option>
                 </select>
             </div>-->
-          </div>
+          <!--</div>-->
           <div class="col-sm-6 right input">
             <!--<span><input type="text" name="kod" id="task_id" placeholder="Введите код запроса..."></span>-->
           </div>
@@ -54,12 +54,21 @@
             <div class="column col-sm-6"><img src="maps/null.jpg" id="second"></div>
           </div>
         </div>
+        <br>
+        <div class="row">
+          <div class="table">
+            <p><b>ID:</b><br/>1022VAAS</p>
+            <p><b>Date/Time:</b><br/>07/20/2019</p>
+            <p><b>Event:</b><br/>Fire</p>
+            <p><b>Description:</b><br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+        </div>
 
       </div>
       <footer>
 
         <div class="row">
-          <div class="col-sm-5" style="margin-left: 100px;">
+          <div class="col-sm-5 socialnetwork">
 
               <a class="btn-sn" href="https://vk.com/axiom.community">
                 <i class="fab fa-fw fa-vk"></i>
@@ -69,7 +78,7 @@
               </a>
 
           </div>
-          <div class="col-sm-5 right" style="margin-right: 100px; color: white;">
+          <div class="col-sm-5 copyright">
             <p>Геопортал, <a href="http://ostrov.axiom.community/" class="color-white" target="blank">&copy; AXIOM</a>, 2019,</p>
             <p>geoportal@axiom.community</p>
           </div>
@@ -81,7 +90,8 @@
         <form method="POST">
           <h2>Заявка</h2>
           <p><input type="text" name="something" placeholder="Введите что-нибудь..."></p>
-          <p><input type="button" value="Отправить заявку" onclick="popdown('#task')"></p>
+          <br>
+          <p><input type="button" value="Отправить заявку" onclick="popdown('#task')" style="width: 50%; margin-left: 25%;"></p>
         </form>
       </div>
     </div>
@@ -91,7 +101,8 @@
           <h2>Помощь</h2>
           <p>Введите код, полученный в электронном письме, в соответстующее поле, затем нажмите <b>Enter</b></p>
           <p>Демонстрационные коды: 1022VAAS, 1022VPDO</p>
-          <p><input type="submit" value="Закрыть" onclick="popdown('#help')"></p>
+          <br>
+          <p><input type="submit" value="Закрыть" onclick="popdown('#help')" style="width: 50%; margin-left: 25%;"></p>
         </div>
       </div>
     </div>
@@ -104,11 +115,13 @@
               jQuery("img#second").attr("src", "maps/" + $("#task_id").val().replace(" ", "").toUpperCase()+"_prc.jpg");
               jQuery("img#second").css("display", "block");
 
+              jQuery(".row .table").css("display", "block");
               jQuery("img#placeholder").css("display", "none");
           }
       });
 
       function popup(id) {
+        popdown(".popup");
         jQuery(id + " .popup_inner").removeClass("fadeOutDown");
         jQuery(id).css("display", "block");
         jQuery(id + " .popup_inner").addClass("fadeInDown");
@@ -118,11 +131,11 @@
         jQuery(id + " .popup_inner").addClass("fadeOutDown");
       }
 
-      jQuery(document).mouseup(function (e) {
+      /*jQuery(document).mouseup(function (e) {
           if (jQuery(".popup").has(e.target).length === 0) {
               popdown(".popup");
           }
-      });
+      });*/
     </script>
   </body>
 </html>
