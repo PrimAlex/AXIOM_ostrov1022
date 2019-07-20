@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <title>AXIOM</title>
     <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="animate.css">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
     <style TYPE="text/css">
       body,html{
         overflow-x: hidden;
@@ -23,8 +24,8 @@
       </div>
 
         <div class="col-sm-6 right">
-              <a class="btn">ОТПРАВИТЬ ЗАЯВКУ</a>
-              <a class="btn">Как пользоваться?</a>
+              <a class="btn" onclick="popup('#task')">ОТПРАВИТЬ ЗАЯВКУ</a>
+              <a class="btn" onclick="popup('#help')">Как пользоваться?</a>
         </div>
         </div>
     </header>
@@ -32,22 +33,25 @@
       <div class="content color-black">
         <div class="row" style="position:relative;">
           <div class="col-sm-6">
-            <div class="select">
+            <span><input type="text" name="kod" id="task_id" placeholder="Введите код запроса..."></span>
+            <!--<div class="select">
                 <select>
                     <option value="" disabled selected>Выберите тип карты</option>
                     <option value="fire">Пожар</option>
                 </select>
-            </div>
+            </div>-->
           </div>
           <div class="col-sm-6 right input">
-            <span><input type="text" name="kod" placeholder="Введите код запроса..."></span>
+            <!--<span><input type="text" name="kod" id="task_id" placeholder="Введите код запроса..."></span>-->
           </div>
         </div>
 
         <div class="row">
           <div class="mapblock">
-            <img src="maps/blurearth.jpg" alt="">
-            <span><input class="startinput" type="text" name="kod" placeholder="Введите код запроса..."></span>
+            <img src="maps/blurearth.jpg" id="placeholder">
+            <!--<span><input class="startinput" type="text" name="kod" placeholder="Введите код запроса..."></span>-->
+            <div class="column col-sm-6"><img src="maps/null.jpg" id="first"></div>
+            <div class="column col-sm-6"><img src="maps/null.jpg" id="second"></div>
           </div>
         </div>
 
@@ -72,5 +76,53 @@
         </div>
       </footer>
     </div>
+    <div class="popup" id="task">
+      <div class="animated popup_inner">
+        <form method="POST">
+          <h2>Заявка</h2>
+          <p><input type="text" name="something" placeholder="Введите что-нибудь..."></p>
+          <p><input type="button" value="Отправить заявку" onclick="popdown('#task')"></p>
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="help">
+      <div class="animated popup_inner">
+        <div>
+          <h2>Помощь</h2>
+          <p>Введите код, полученный в электронном письме, в соответстующее поле, затем нажмите <b>Enter</b></p>
+          <p>Демонстрационные коды: 1022VAAS, 1022VPDO</p>
+          <p><input type="submit" value="Закрыть" onclick="popdown('#help')"></p>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $("#task_id").keyup(function(event){
+          if(event.keyCode == 13){
+              event.preventDefault();
+              jQuery("img#first").attr("src", "maps/" + $("#task_id").val().replace(" ", "").toUpperCase()+"_raw.jpg");
+              jQuery("img#first").css("display", "block");
+              jQuery("img#second").attr("src", "maps/" + $("#task_id").val().replace(" ", "").toUpperCase()+"_prc.jpg");
+              jQuery("img#second").css("display", "block");
+
+              jQuery("img#placeholder").css("display", "none");
+          }
+      });
+
+      function popup(id) {
+        jQuery(id + " .popup_inner").removeClass("fadeOutDown");
+        jQuery(id).css("display", "block");
+        jQuery(id + " .popup_inner").addClass("fadeInDown");
+      }
+      function popdown(id) {
+        jQuery(id + " .popup_inner").removeClass("fadeInDown");
+        jQuery(id + " .popup_inner").addClass("fadeOutDown");
+      }
+
+      jQuery(document).mouseup(function (e) {
+          if (jQuery(".popup").has(e.target).length === 0) {
+              popdown(".popup");
+          }
+      });
+    </script>
   </body>
 </html>
