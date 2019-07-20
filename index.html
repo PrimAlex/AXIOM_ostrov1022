@@ -88,8 +88,19 @@
     <div class="popup" id="task">
       <div class="animated popup_inner">
         <form method="POST">
-          <h2>Заявка</h2>
-          <p><input type="text" name="something" placeholder="Введите что-нибудь..."></p>
+          <div class="row">
+            <div class="col-sm-6">
+              <h2>Заявка</h2>
+            </div>
+            <div class="col-sm-6">
+              <h3 style="color: #ccc; text-align:right; cursor: default;" onclick="popdown('#task')">X</h3>
+            </div>
+          </div>
+          <p><input type="text" name="name" placeholder="Имя"></p>
+          <p><input type="text" name="something" placeholder="Фамилия"></p>
+          <p><input type="text" name="something" placeholder="Отчество"></p>
+          <p><input type="text" name="something" placeholder="E-mail"></p>
+
           <br>
           <p><input type="button" value="Отправить заявку" onclick="popdown('#task')" style="width: 50%; margin-left: 25%;"></p>
         </form>
@@ -98,7 +109,14 @@
     <div class="popup" id="help">
       <div class="animated popup_inner">
         <div>
-          <h2>Помощь</h2>
+          <div class="row">
+            <div class="col-sm-6">
+              <h2>Помощь</h2>
+            </div>
+            <div class="col-sm-6">
+              <h3 style="color: #ccc; text-align:right; cursor: default;" onclick="popdown('.popup')">X</h3>
+            </div>
+          </div>
           <p>Введите код, полученный в электронном письме, в соответстующее поле, затем нажмите <b>Enter</b></p>
           <p>Демонстрационные коды: 1022VAAS, 1022VPDO</p>
           <br>
@@ -131,11 +149,14 @@
         jQuery(id + " .popup_inner").addClass("fadeOutDown");
       }
 
-      /*jQuery(document).mouseup(function (e) {
+      jQuery(document).mouseup(function (e) {
           if (jQuery(".popup").has(e.target).length === 0) {
               popdown(".popup");
           }
-      });*/
+          if (jQuery("#task").has(e.target).length === 0) {
+              popdown("#task");
+          }
+      });
     </script>
   </body>
 </html>

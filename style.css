@@ -225,7 +225,7 @@ div.popup_inner {
 .socialnetwork{margin-left: 100px;}
 .row .table{display: none;}
 
-.table p{
+.table p, form p input{
   border-bottom: rgba(77, 125, 157, 0.2) solid 1px;
   margin-top: 20px;
 }
